@@ -1,0 +1,38 @@
+export const servers = [
+  {
+    id: "server-1",
+    name: "nexus-monitor-01",
+    environment: "production",
+    status: "active",
+    uptime: "14 days",
+    linkedProjectsCount: 1,
+    description: "Primary monitoring host for system health checks.",
+  },
+  {
+    id: "server-2",
+    name: "data-pipeline-01",
+    environment: "staging",
+    status: "idle",
+    uptime: "7 days",
+    linkedProjectsCount: 1,
+    description: "Handles sync jobs and data ingestion for analytics.",
+  },
+  {
+    id: "server-3",
+    name: "alerts-engine-01",
+    environment: "production",
+    status: "error",
+    uptime: "3 days",
+    linkedProjectsCount: 1,
+    description: "Processes alert rules and delivers notifications.",
+  },
+  {
+    id: "server-4",
+    name: "analytics-01",
+    environment: "development",
+    status: "active",
+    uptime: "21 hours",
+    linkedProjectsCount: 1,
+    description: "Experimental analytics node for reports and summaries.",
+  },
+];
