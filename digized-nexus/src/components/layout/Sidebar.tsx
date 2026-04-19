@@ -33,6 +33,12 @@ export default function Sidebar() {
         >
           Activity
         </a>
+        <a
+          href="/settings"
+          className="block rounded px-2 py-1 hover:bg-slate-100"
+        >
+          Settings
+        </a>
       </nav>
     </aside>
   );
