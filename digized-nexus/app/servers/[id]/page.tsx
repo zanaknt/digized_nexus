@@ -82,6 +82,11 @@ export default function ServerDetailPage({
                     <span>{project.owner}</span>
                     <Badge type="status" value={project.status} />
                   </div>
+                  <div className="mt-1 text-slate-600">
+                    Agents: {project.linkedAgentIds.length} · Incidents:{" "}
+                    {project.linkedIncidentIds.length}
+                  </div>
+                  <p className="mt-2 text-slate-700">{project.description}</p>
                 </li>
               ))}
             </ul>

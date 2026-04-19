@@ -63,11 +63,42 @@ export default function ProjectDetailPage({
             <div>
               <div className="font-semibold text-slate-900">Related server</div>
               <div className="mt-1">
-                {relatedServer ? relatedServer.name : "No related server"}
+                {relatedServer ? (
+                  <Link
+                    href={`/servers/${relatedServer.id}`}
+                    className="inline-flex items-center gap-2 text-slate-900 hover:text-slate-700"
+                  >
+                    <span className="font-medium">{relatedServer.name}</span>
+                    <Badge type="status" value={relatedServer.status} />
+                  </Link>
+                ) : (
+                  "No related server"
+                )}
               </div>
             </div>
           </div>
           <p className="mt-4 text-sm text-slate-700">{project.description}</p>
+        </DetailSection>
+
+        <DetailSection title="Related server">
+          {relatedServer ? (
+            <div className="mt-3 rounded-md border border-slate-200 bg-white px-3 py-3 text-sm text-slate-700">
+              <Link
+                href={`/servers/${relatedServer.id}`}
+                className="font-medium text-slate-900 hover:text-slate-700"
+              >
+                {relatedServer.name}
+              </Link>
+              <div className="mt-1 flex flex-wrap items-center gap-2 text-slate-600">
+                <span>{relatedServer.environment}</span>
+                <Badge type="status" value={relatedServer.status} />
+                <span>Uptime: {relatedServer.uptime}</span>
+              </div>
+              <p className="mt-2 text-slate-700">{relatedServer.description}</p>
+            </div>
+          ) : (
+            <p className="mt-3 text-sm text-slate-600">No related server.</p>
+          )}
         </DetailSection>
 
         <DetailSection title="Linked agents">
