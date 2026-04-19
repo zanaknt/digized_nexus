@@ -29,7 +29,7 @@ export default function Badge({ type, value }: BadgeProps) {
 
   return (
     <span
-      className={`inline-flex items-center rounded-full px-2.5 py-1 text-xs font-semibold ${styles}`}
+      className={`inline-flex items-center rounded-full px-2.5 py-1 text-xs font-semibold leading-none ${styles}`}
     >
       {displayValue}
     </span>
