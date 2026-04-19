@@ -1,4 +1,6 @@
-export const agents = [
+import type { Agent } from "@/src/lib/models";
+
+export const agents: Agent[] = [
   {
     id: "agent-1",
     name: "Orion",

@@ -1,4 +1,6 @@
-export const outputs = [
+import type { Output } from "@/src/lib/models";
+
+export const outputs: Output[] = [
   {
     id: "output-1",
     title: "Heartbeat Report",

@@ -1,4 +1,6 @@
-export const servers = [
+import type { Server } from "@/src/lib/models";
+
+export const servers: Server[] = [
   {
     id: "server-1",
     name: "nexus-monitor-01",

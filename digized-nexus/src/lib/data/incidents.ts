@@ -1,4 +1,6 @@
-export const incidents = [
+import type { Incident } from "@/src/lib/models";
+
+export const incidents: Incident[] = [
   {
     id: "incident-1",
     title: "Agent heartbeat missing",

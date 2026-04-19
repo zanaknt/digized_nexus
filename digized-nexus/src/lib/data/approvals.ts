@@ -1,4 +1,6 @@
-export const approvals = [
+import type { Approval } from "@/src/lib/models";
+
+export const approvals: Approval[] = [
   {
     id: "approval-1",
     incidentId: "incident-1",

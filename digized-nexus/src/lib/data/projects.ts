@@ -1,4 +1,6 @@
-export const projects = [
+import type { Project } from "@/src/lib/models";
+
+export const projects: Project[] = [
   {
     id: "project-1",
     name: "Monitoring System",
