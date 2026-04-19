@@ -5,7 +5,9 @@ export const servers = [
     environment: "production",
     status: "active",
     uptime: "14 days",
-    linkedProjectsCount: 1,
+    linkedProjectIds: ["project-1"],
+    recentIncidentIds: ["incident-1"],
+    recentActivityIds: ["activity-1", "activity-2", "activity-4"],
     description: "Primary monitoring host for system health checks.",
   },
   {
@@ -14,7 +16,9 @@ export const servers = [
     environment: "staging",
     status: "idle",
     uptime: "7 days",
-    linkedProjectsCount: 1,
+    linkedProjectIds: ["project-2"],
+    recentIncidentIds: ["incident-2"],
+    recentActivityIds: ["activity-3", "activity-5", "activity-7"],
     description: "Handles sync jobs and data ingestion for analytics.",
   },
   {
@@ -23,7 +27,9 @@ export const servers = [
     environment: "production",
     status: "error",
     uptime: "3 days",
-    linkedProjectsCount: 1,
+    linkedProjectIds: ["project-3"],
+    recentIncidentIds: ["incident-3"],
+    recentActivityIds: ["activity-6", "activity-8"],
     description: "Processes alert rules and delivers notifications.",
   },
   {
@@ -32,7 +38,9 @@ export const servers = [
     environment: "development",
     status: "active",
     uptime: "21 hours",
-    linkedProjectsCount: 1,
+    linkedProjectIds: ["project-4"],
+    recentIncidentIds: [],
+    recentActivityIds: [],
     description: "Experimental analytics node for reports and summaries.",
   },
 ];
