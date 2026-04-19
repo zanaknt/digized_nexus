@@ -1,15 +1,18 @@
+import Link from "next/link";
 import PageShell from "@/src/components/layout/PageShell";
 import Badge from "@/src/components/ui/Badge";
 import ListRow from "@/src/components/ui/ListRow";
 import { approvals } from "@/src/lib/data/approvals";
 
 function ApprovalRow({
+  id,
   actionTitle,
   relatedIncident,
   severity,
   requestedBy,
   status,
 }: {
+  id: string;
   actionTitle: string;
   relatedIncident: string;
   severity: string;
@@ -18,7 +21,12 @@ function ApprovalRow({
 }) {
   return (
     <ListRow className="grid grid-cols-[2.2fr_1.2fr_0.9fr_1fr_1.5fr] gap-4 py-3">
-      <div className="font-medium text-slate-900">{actionTitle}</div>
+      <Link
+        href={`/approvals/${id}`}
+        className="font-medium text-slate-900 hover:text-slate-700"
+      >
+        {actionTitle}
+      </Link>
       <div>{relatedIncident}</div>
       <div>
         <Badge type="severity" value={severity} />
