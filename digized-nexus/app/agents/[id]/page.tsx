@@ -2,16 +2,18 @@ import PageShell from "@/src/components/layout/PageShell";
 import Link from "next/link";
 import Badge from "@/src/components/ui/Badge";
 import DetailSection from "@/src/components/ui/DetailSection";
-import { incidents } from "@/src/lib/data/incidents";
-import { agents } from "@/src/lib/data/agents";
-import { outputs } from "@/src/lib/data/outputs";
+import {
+  findAgentById,
+  getIncidents,
+  getOutputs,
+} from "@/src/lib/data-access";
 
 export default function AgentDetailPage({
   params,
 }: {
   params: { id: string };
 }) {
-  const agent = agents.find((item) => item.id === params.id);
+  const agent = findAgentById(params.id);
 
   if (!agent) {
     return (
@@ -27,10 +29,10 @@ export default function AgentDetailPage({
     );
   }
 
-  const linkedIncidents = incidents.filter((incident) =>
+  const linkedIncidents = getIncidents().filter((incident) =>
     agent.linkedIncidentIds.includes(incident.id),
   );
-  const relatedOutputs = outputs
+  const relatedOutputs = getOutputs()
     .filter((output) => output.relatedAgentId === agent.id)
     .sort((a, b) => b.createdAt.localeCompare(a.createdAt));
 

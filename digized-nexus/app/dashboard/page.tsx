@@ -1,12 +1,18 @@
 import Link from "next/link";
 import PageShell from "@/src/components/layout/PageShell";
 import Badge from "@/src/components/ui/Badge";
-import { agents } from "@/src/lib/data/agents";
-import { approvals } from "@/src/lib/data/approvals";
-import { incidents } from "@/src/lib/data/incidents";
-import { outputs } from "@/src/lib/data/outputs";
+import {
+  getAgents,
+  getApprovals,
+  getIncidents,
+  getOutputs,
+} from "@/src/lib/data-access";
 
 export default function DashboardPage() {
+  const agents = getAgents();
+  const approvals = getApprovals();
+  const incidents = getIncidents();
+  const outputs = getOutputs();
   const totalAgents = agents.length;
   const openIncidents = incidents.filter(
     (incident) => incident.status === "open",

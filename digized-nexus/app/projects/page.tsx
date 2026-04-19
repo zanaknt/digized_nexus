@@ -1,7 +1,7 @@
 import Link from "next/link";
 import PageShell from "@/src/components/layout/PageShell";
 import Badge from "@/src/components/ui/Badge";
-import { projects } from "@/src/lib/data/projects";
+import { getProjects } from "@/src/lib/data-access";
 
 function ProjectItem({
   id,
@@ -43,6 +43,8 @@ function ProjectItem({
 }
 
 export default function ProjectsPage() {
+  const projects = getProjects();
+
   return (
     <PageShell
       title="Projects"

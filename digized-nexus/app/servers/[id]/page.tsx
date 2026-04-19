@@ -2,17 +2,19 @@ import Link from "next/link";
 import PageShell from "@/src/components/layout/PageShell";
 import Badge from "@/src/components/ui/Badge";
 import DetailSection from "@/src/components/ui/DetailSection";
-import { activities } from "@/src/lib/data/activity";
-import { incidents } from "@/src/lib/data/incidents";
-import { projects } from "@/src/lib/data/projects";
-import { servers } from "@/src/lib/data/servers";
+import {
+  findServerById,
+  getActivities,
+  getIncidents,
+  getProjects,
+} from "@/src/lib/data-access";
 
 export default function ServerDetailPage({
   params,
 }: {
   params: { id: string };
 }) {
-  const server = servers.find((item) => item.id === params.id);
+  const server = findServerById(params.id);
 
   if (!server) {
     return (
@@ -28,13 +30,13 @@ export default function ServerDetailPage({
     );
   }
 
-  const linkedProjects = projects.filter((project) =>
+  const linkedProjects = getProjects().filter((project) =>
     server.linkedProjectIds.includes(project.id),
   );
-  const recentIncidents = incidents.filter((incident) =>
+  const recentIncidents = getIncidents().filter((incident) =>
     server.recentIncidentIds.includes(incident.id),
   );
-  const recentActivity = activities.filter((activity) =>
+  const recentActivity = getActivities().filter((activity) =>
     server.recentActivityIds.includes(activity.id),
   );
 

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import PageShell from "@/src/components/layout/PageShell";
 import Badge from "@/src/components/ui/Badge";
-import { agents } from "@/src/lib/data/agents";
+import { getAgents } from "@/src/lib/data-access";
 
 function AgentRow({
   id,
@@ -32,6 +32,8 @@ function AgentRow({
 }
 
 export default function AgentsPage() {
+  const agents = getAgents();
+
   return (
     <PageShell
       title="Agents"

@@ -2,15 +2,17 @@ import Link from "next/link";
 import PageShell from "@/src/components/layout/PageShell";
 import Badge from "@/src/components/ui/Badge";
 import DetailSection from "@/src/components/ui/DetailSection";
-import { approvals } from "@/src/lib/data/approvals";
-import { incidents } from "@/src/lib/data/incidents";
+import {
+  findApprovalById,
+  findIncidentById,
+} from "@/src/lib/data-access";
 
 export default function ApprovalDetailPage({
   params,
 }: {
   params: { id: string };
 }) {
-  const approval = approvals.find((item) => item.id === params.id);
+  const approval = findApprovalById(params.id);
 
   if (!approval) {
     return (
@@ -26,8 +28,7 @@ export default function ApprovalDetailPage({
     );
   }
 
-  const relatedIncident =
-    incidents.find((incident) => incident.id === approval.incidentId) ?? null;
+  const relatedIncident = findIncidentById(approval.incidentId) ?? null;
 
   return (
     <PageShell

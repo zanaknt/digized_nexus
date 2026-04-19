@@ -2,18 +2,20 @@ import Link from "next/link";
 import PageShell from "@/src/components/layout/PageShell";
 import Badge from "@/src/components/ui/Badge";
 import DetailSection from "@/src/components/ui/DetailSection";
-import { agents } from "@/src/lib/data/agents";
-import { approvals } from "@/src/lib/data/approvals";
-import { incidents } from "@/src/lib/data/incidents";
-import { outputs } from "@/src/lib/data/outputs";
-import { projects } from "@/src/lib/data/projects";
+import {
+  findAgentById,
+  findOutputById,
+  getApprovals,
+  getIncidents,
+  getProjects,
+} from "@/src/lib/data-access";
 
 export default function OutputDetailPage({
   params,
 }: {
   params: { id: string };
 }) {
-  const output = outputs.find((item) => item.id === params.id);
+  const output = findOutputById(params.id);
 
   if (!output) {
     return (
@@ -29,15 +31,14 @@ export default function OutputDetailPage({
     );
   }
 
-  const relatedAgent =
-    agents.find((agent) => agent.id === output.relatedAgentId) ?? null;
+  const relatedAgent = findAgentById(output.relatedAgentId) ?? null;
   const relatedProject =
-    projects.find((project) => project.recentOutputIds.includes(output.id)) ??
+    getProjects().find((project) => project.recentOutputIds.includes(output.id)) ??
     null;
-  const linkedIncidents = incidents.filter((incident) =>
+  const linkedIncidents = getIncidents().filter((incident) =>
     output.linkedIncidentIds.includes(incident.id),
   );
-  const linkedApprovals = approvals.filter((approval) =>
+  const linkedApprovals = getApprovals().filter((approval) =>
     output.linkedApprovalIds.includes(approval.id),
   );
 

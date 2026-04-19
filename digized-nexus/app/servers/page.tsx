@@ -1,7 +1,7 @@
 import Link from "next/link";
 import PageShell from "@/src/components/layout/PageShell";
 import Badge from "@/src/components/ui/Badge";
-import { servers } from "@/src/lib/data/servers";
+import { getServers } from "@/src/lib/data-access";
 
 function ServerItem({
   id,
@@ -43,6 +43,8 @@ function ServerItem({
 }
 
 export default function ServersPage() {
+  const servers = getServers();
+
   return (
     <PageShell
       title="Servers"

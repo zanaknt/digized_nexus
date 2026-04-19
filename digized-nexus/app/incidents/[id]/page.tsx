@@ -2,15 +2,17 @@ import Link from "next/link";
 import PageShell from "@/src/components/layout/PageShell";
 import Badge from "@/src/components/ui/Badge";
 import DetailSection from "@/src/components/ui/DetailSection";
-import { incidents } from "@/src/lib/data/incidents";
-import { agents } from "@/src/lib/data/agents";
+import {
+  findAgentById,
+  findIncidentById,
+} from "@/src/lib/data-access";
 
 export default function IncidentDetailPage({
   params,
 }: {
   params: { id: string };
 }) {
-  const incident = incidents.find((item) => item.id === params.id);
+  const incident = findIncidentById(params.id);
 
   if (!incident) {
     return (
@@ -26,7 +28,7 @@ export default function IncidentDetailPage({
     );
   }
 
-  const agent = agents.find((item) => item.id === incident.linkedAgentId);
+  const agent = findAgentById(incident.linkedAgentId);
 
   return (
     <PageShell

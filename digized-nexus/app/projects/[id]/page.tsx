@@ -2,18 +2,20 @@ import Link from "next/link";
 import PageShell from "@/src/components/layout/PageShell";
 import Badge from "@/src/components/ui/Badge";
 import DetailSection from "@/src/components/ui/DetailSection";
-import { agents } from "@/src/lib/data/agents";
-import { incidents } from "@/src/lib/data/incidents";
-import { outputs } from "@/src/lib/data/outputs";
-import { projects } from "@/src/lib/data/projects";
-import { servers } from "@/src/lib/data/servers";
+import {
+  findProjectById,
+  findServerById,
+  getAgents,
+  getIncidents,
+  getOutputs,
+} from "@/src/lib/data-access";
 
 export default function ProjectDetailPage({
   params,
 }: {
   params: { id: string };
 }) {
-  const project = projects.find((item) => item.id === params.id);
+  const project = findProjectById(params.id);
 
   if (!project) {
     return (
@@ -29,17 +31,17 @@ export default function ProjectDetailPage({
     );
   }
 
-  const linkedAgents = agents.filter((agent) =>
+  const linkedAgents = getAgents().filter((agent) =>
     project.linkedAgentIds.includes(agent.id),
   );
-  const linkedIncidents = incidents.filter((incident) =>
+  const linkedIncidents = getIncidents().filter((incident) =>
     project.linkedIncidentIds.includes(incident.id),
   );
-  const recentOutputs = outputs.filter((output) =>
+  const recentOutputs = getOutputs().filter((output) =>
     project.recentOutputIds.includes(output.id),
   );
   const relatedServer = project.relatedServerId
-    ? servers.find((server) => server.id === project.relatedServerId)
+    ? findServerById(project.relatedServerId)
     : null;
 
   return (

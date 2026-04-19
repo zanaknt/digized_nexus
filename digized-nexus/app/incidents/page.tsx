@@ -1,7 +1,7 @@
 import Link from "next/link";
 import PageShell from "@/src/components/layout/PageShell";
 import Badge from "@/src/components/ui/Badge";
-import { incidents } from "@/src/lib/data/incidents";
+import { getIncidents } from "@/src/lib/data-access";
 
 function IncidentRow({
   id,
@@ -37,6 +37,8 @@ function IncidentRow({
 }
 
 export default function IncidentsPage() {
+  const incidents = getIncidents();
+
   return (
     <PageShell
       title="Incidents"

@@ -2,7 +2,7 @@ import Link from "next/link";
 import PageShell from "@/src/components/layout/PageShell";
 import Badge from "@/src/components/ui/Badge";
 import ListRow from "@/src/components/ui/ListRow";
-import { outputs } from "@/src/lib/data/outputs";
+import { getOutputs } from "@/src/lib/data-access";
 
 function OutputItem({
   id,
@@ -53,7 +53,7 @@ function OutputItem({
 }
 
 export default function OutputsPage() {
-  const sortedOutputs = [...outputs].sort((a, b) =>
+  const sortedOutputs = [...getOutputs()].sort((a, b) =>
     b.createdAt.localeCompare(a.createdAt),
   );
 

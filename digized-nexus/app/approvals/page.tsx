@@ -2,7 +2,7 @@ import Link from "next/link";
 import PageShell from "@/src/components/layout/PageShell";
 import Badge from "@/src/components/ui/Badge";
 import ListRow from "@/src/components/ui/ListRow";
-import { approvals } from "@/src/lib/data/approvals";
+import { getApprovals } from "@/src/lib/data-access";
 
 function ApprovalRow({
   id,
@@ -48,6 +48,8 @@ function ApprovalRow({
 }
 
 export default function ApprovalsPage() {
+  const approvals = getApprovals();
+
   return (
     <PageShell
       title="Approvals"

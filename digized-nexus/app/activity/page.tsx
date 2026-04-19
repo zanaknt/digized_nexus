@@ -1,7 +1,7 @@
 import PageShell from "@/src/components/layout/PageShell";
 import Badge from "@/src/components/ui/Badge";
 import ListRow from "@/src/components/ui/ListRow";
-import { activities } from "@/src/lib/data/activity";
+import { getActivities } from "@/src/lib/data-access";
 
 function ActivityItem({
   title,
@@ -27,7 +27,7 @@ function ActivityItem({
 }
 
 export default function ActivityPage() {
-  const sortedActivities = [...activities].sort((a, b) =>
+  const sortedActivities = [...getActivities()].sort((a, b) =>
     b.timestamp.localeCompare(a.timestamp),
   );
 
