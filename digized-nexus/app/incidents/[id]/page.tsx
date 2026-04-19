@@ -1,5 +1,6 @@
 import Link from "next/link";
 import PageShell from "@/src/components/layout/PageShell";
+import Badge from "@/src/components/ui/Badge";
 import { incidents } from "@/src/lib/data/incidents";
 import { agents } from "@/src/lib/data/agents";
 
@@ -33,7 +34,8 @@ export default function IncidentDetailPage({
     >
       <div className="space-y-6">
         <section className="rounded-lg border border-slate-200 bg-slate-50 p-5">
-          <div className="grid gap-2 text-sm text-slate-700 sm:grid-cols-2">
+          <h2 className="text-sm font-semibold text-slate-900">Details</h2>
+          <div className="mt-4 grid gap-4 text-sm text-slate-700 sm:grid-cols-3">
             <div>
               <div className="font-semibold text-slate-900">Created at</div>
               <div className="mt-1">{incident.createdAt}</div>
@@ -41,6 +43,18 @@ export default function IncidentDetailPage({
             <div>
               <div className="font-semibold text-slate-900">Source</div>
               <div className="mt-1">{incident.source}</div>
+            </div>
+            <div>
+              <div className="font-semibold text-slate-900">Severity</div>
+              <div className="mt-1">
+                <Badge type="severity" value={incident.severity} />
+              </div>
+            </div>
+            <div>
+              <div className="font-semibold text-slate-900">Status</div>
+              <div className="mt-1">
+                <Badge type="status" value={incident.status} />
+              </div>
             </div>
           </div>
         </section>
@@ -60,13 +74,16 @@ export default function IncidentDetailPage({
         </section>
 
         <section className="rounded-lg border border-slate-200 bg-slate-50 p-5">
-          <h2 className="text-sm font-semibold text-slate-900">Linked agent</h2>
+          <h2 className="text-sm font-semibold text-slate-900">
+            Related agent
+          </h2>
           {agent ? (
             <Link
               href={`/agents/${agent.id}`}
-              className="mt-3 inline-block text-sm text-slate-700 underline"
+              className="mt-3 inline-flex items-center gap-2 text-sm text-slate-700 hover:text-slate-900"
             >
-              {agent.name} · {agent.role}
+              <span className="font-medium">{agent.name}</span>
+              <span className="text-slate-600">· {agent.role}</span>
             </Link>
           ) : (
             <p className="mt-3 text-sm text-slate-600">

@@ -1,5 +1,6 @@
 import PageShell from "@/src/components/layout/PageShell";
 import Link from "next/link";
+import Badge from "@/src/components/ui/Badge";
 import { incidents } from "@/src/lib/data/incidents";
 import { agents } from "@/src/lib/data/agents";
 
@@ -35,9 +36,22 @@ export default function AgentDetailPage({
     >
       <div className="space-y-6">
         <section className="rounded-lg border border-slate-200 bg-slate-50 p-5">
-          <div className="text-sm text-slate-600">Last run</div>
-          <div className="mt-1 text-base font-medium text-slate-900">
-            {agent.lastRun}
+          <h2 className="text-sm font-semibold text-slate-900">Overview</h2>
+          <div className="mt-4 grid gap-4 text-sm text-slate-700 sm:grid-cols-3">
+            <div>
+              <div className="font-semibold text-slate-900">Role</div>
+              <div className="mt-1">{agent.role}</div>
+            </div>
+            <div>
+              <div className="font-semibold text-slate-900">Status</div>
+              <div className="mt-1">
+                <Badge type="status" value={agent.status} />
+              </div>
+            </div>
+            <div>
+              <div className="font-semibold text-slate-900">Last run</div>
+              <div className="mt-1">{agent.lastRun}</div>
+            </div>
           </div>
           <div className="mt-4 text-sm text-slate-700">{agent.description}</div>
         </section>
@@ -67,13 +81,17 @@ export default function AgentDetailPage({
               {linkedIncidents.map((incident) => (
                 <li
                   key={incident.id}
-                  className="rounded-md bg-white border border-slate-200 px-3 py-2"
+                  className="rounded-md bg-white border border-slate-200 px-3 py-3"
                 >
-                  <div className="font-medium text-slate-900">
+                  <Link
+                    href={`/incidents/${incident.id}`}
+                    className="font-medium text-slate-900 hover:text-slate-700"
+                  >
                     {incident.title}
-                  </div>
-                  <div className="text-slate-600">
-                    {incident.status} · {incident.severity}
+                  </Link>
+                  <div className="mt-1 flex flex-wrap items-center gap-2 text-slate-600">
+                    <Badge type="status" value={incident.status} />
+                    <Badge type="severity" value={incident.severity} />
                   </div>
                 </li>
               ))}
