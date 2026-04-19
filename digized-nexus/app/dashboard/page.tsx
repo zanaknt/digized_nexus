@@ -19,6 +19,16 @@ export default function DashboardPage() {
   const latestIncident = [...incidents].sort((a, b) =>
     b.createdAt.localeCompare(a.createdAt),
   )[0];
+  const pendingApprovalItems = approvals.slice(0, 3).map((approval) => {
+    const relatedIncident = incidents.find(
+      (incident) => incident.title === approval.relatedIncident,
+    );
+
+    return {
+      ...approval,
+      relatedIncidentId: relatedIncident?.id ?? null,
+    };
+  });
 
   return (
     <PageShell
@@ -26,38 +36,50 @@ export default function DashboardPage() {
       subtitle="This is the initial dashboard skeleton. Use this space for key metrics and quick links."
     >
       <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <div className="rounded-lg border border-slate-200 bg-slate-50 p-5 shadow-sm">
+        <Link
+          href="/agents"
+          className="rounded-lg border border-slate-200 bg-slate-50 p-5 shadow-sm transition hover:border-slate-300 hover:bg-white"
+        >
           <div className="text-xs font-semibold uppercase tracking-wide text-slate-500">
             Active agents
           </div>
           <div className="mt-3 text-3xl font-semibold text-slate-900">
             {totalAgents}
           </div>
-        </div>
-        <div className="rounded-lg border border-slate-200 bg-slate-50 p-5 shadow-sm">
+        </Link>
+        <Link
+          href="/incidents"
+          className="rounded-lg border border-slate-200 bg-slate-50 p-5 shadow-sm transition hover:border-slate-300 hover:bg-white"
+        >
           <div className="text-xs font-semibold uppercase tracking-wide text-slate-500">
             Open incidents
           </div>
           <div className="mt-3 text-3xl font-semibold text-slate-900">
             {openIncidents}
           </div>
-        </div>
-        <div className="rounded-lg border border-slate-200 bg-slate-50 p-5 shadow-sm">
+        </Link>
+        <Link
+          href="/approvals"
+          className="rounded-lg border border-slate-200 bg-slate-50 p-5 shadow-sm transition hover:border-slate-300 hover:bg-white"
+        >
           <div className="text-xs font-semibold uppercase tracking-wide text-slate-500">
             Pending approvals
           </div>
           <div className="mt-3 text-3xl font-semibold text-slate-900">
             {pendingApprovals}
           </div>
-        </div>
-        <div className="rounded-lg border border-slate-200 bg-slate-50 p-5 shadow-sm">
+        </Link>
+        <Link
+          href="/incidents"
+          className="rounded-lg border border-slate-200 bg-slate-50 p-5 shadow-sm transition hover:border-slate-300 hover:bg-white"
+        >
           <div className="text-xs font-semibold uppercase tracking-wide text-slate-500">
             High-severity incidents
           </div>
           <div className="mt-3 text-3xl font-semibold text-slate-900">
             {errorsToday}
           </div>
-        </div>
+        </Link>
       </section>
 
       <section className="mt-6 grid gap-4 lg:grid-cols-2">
@@ -71,36 +93,56 @@ export default function DashboardPage() {
                 Quick details from the most recent issue.
               </p>
             </div>
-            <Badge type="severity" value={latestIncident.severity} />
+            <Link href={`/incidents/${latestIncident.id}`}>
+              <Badge type="severity" value={latestIncident.severity} />
+            </Link>
           </div>
 
           <div className="mt-6 space-y-4">
             <div>
-              <div className="text-sm font-semibold text-slate-700">
+              <Link
+                href={`/incidents/${latestIncident.id}`}
+                className="text-sm font-semibold text-slate-700 hover:text-slate-900"
+              >
                 {latestIncident.title}
-              </div>
+              </Link>
               <div className="mt-2 text-sm leading-6 text-slate-600">
                 {latestIncident.summary}
               </div>
             </div>
             <div className="grid gap-3 sm:grid-cols-2">
-              <div className="rounded-2xl bg-slate-50 p-4">
+              <Link
+                href={`/incidents/${latestIncident.id}`}
+                className="rounded-2xl bg-slate-50 p-4 hover:bg-slate-100"
+              >
                 <div className="text-xs font-semibold uppercase tracking-wide text-slate-500">
                   Status
                 </div>
                 <div className="mt-2">
                   <Badge type="status" value={latestIncident.status} />
                 </div>
-              </div>
-              <div className="rounded-2xl bg-slate-50 p-4">
+              </Link>
+              <Link
+                href={`/incidents/${latestIncident.id}`}
+                className="rounded-2xl bg-slate-50 p-4 hover:bg-slate-100"
+              >
                 <div className="text-xs font-semibold uppercase tracking-wide text-slate-500">
                   Source
                 </div>
                 <div className="mt-2 text-sm font-semibold text-slate-900">
                   {latestIncident.source}
                 </div>
-              </div>
+              </Link>
             </div>
+          </div>
+
+          <div className="mt-6">
+            <Link
+              href={`/incidents/${latestIncident.id}`}
+              className="text-sm font-semibold text-slate-700 underline"
+            >
+              Open incident details
+            </Link>
           </div>
         </div>
 
@@ -115,16 +157,19 @@ export default function DashboardPage() {
           </div>
 
           <div className="mt-6 space-y-4">
-            {approvals.slice(0, 3).map((approval) => (
+            {pendingApprovalItems.map((approval) => (
               <div
                 key={approval.id}
                 className="rounded-2xl border border-slate-200 bg-slate-50 p-4"
               >
                 <div className="flex items-start justify-between gap-4">
                   <div>
-                    <div className="text-sm font-semibold text-slate-900">
+                    <Link
+                      href="/approvals"
+                      className="text-sm font-semibold text-slate-900 hover:text-slate-700"
+                    >
                       {approval.actionTitle}
-                    </div>
+                    </Link>
                     <div className="mt-1 text-sm text-slate-600">
                       Requested by {approval.requestedBy}
                     </div>
@@ -132,7 +177,19 @@ export default function DashboardPage() {
                   <Badge type="status" value={approval.status} />
                 </div>
                 <div className="mt-3 flex items-center justify-between gap-4 text-sm text-slate-600">
-                  <div>Related incident: {approval.relatedIncident}</div>
+                  <div>
+                    Related incident:{" "}
+                    {approval.relatedIncidentId ? (
+                      <Link
+                        href={`/incidents/${approval.relatedIncidentId}`}
+                        className="underline"
+                      >
+                        {approval.relatedIncident}
+                      </Link>
+                    ) : (
+                      approval.relatedIncident
+                    )}
+                  </div>
                   <Badge type="severity" value={approval.severity} />
                 </div>
               </div>
