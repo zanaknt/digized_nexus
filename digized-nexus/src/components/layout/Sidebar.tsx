@@ -19,16 +19,19 @@ export default function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="w-60 min-h-screen border-r border-slate-200 bg-white p-4">
-      <div className="rounded-lg border border-slate-200 bg-slate-50 px-3 py-3">
-        <div className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
+    <aside className="w-64 min-h-screen border-r border-[var(--shell-border)] bg-[var(--shell-surface)] p-4">
+      <div className="rounded-xl border border-[var(--shell-border)] bg-[var(--shell-elevated)] px-3 py-3">
+        <div className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--shell-muted)]">
           Cockpit
         </div>
-        <div className="mt-2 text-sm font-semibold text-slate-900">
+        <div className="mt-2 text-sm font-semibold text-[var(--shell-foreground)]">
           Digized Nexus
         </div>
+        <div className="mt-1 text-xs text-[var(--shell-muted)]">
+          Agent workspace
+        </div>
       </div>
-      <nav className="mt-6 space-y-1 text-sm text-slate-700">
+      <nav className="mt-6 space-y-1 text-sm text-[var(--shell-foreground)]">
         {navItems.map((item) => {
           const isActive =
             pathname === item.href || pathname.startsWith(`${item.href}/`);
@@ -37,10 +40,10 @@ export default function Sidebar() {
             <Link
               key={item.href}
               href={item.href}
-              className={`block rounded-md px-3 py-2 transition ${
+              className={`block rounded-lg px-3 py-2 transition ${
                 isActive
-                  ? "bg-slate-900 font-medium text-white"
-                  : "hover:bg-slate-100"
+                  ? "bg-[var(--shell-foreground)] font-medium text-[var(--shell-surface)]"
+                  : "text-[var(--shell-muted)] hover:bg-[var(--shell-elevated)] hover:text-[var(--shell-foreground)]"
               }`}
             >
               {item.label}

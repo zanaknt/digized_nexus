@@ -3,6 +3,13 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --shell-background: #f4f7fb;
+  --shell-surface: rgba(255, 255, 255, 0.88);
+  --shell-elevated: #eef3f9;
+  --panel-background: #ffffff;
+  --shell-foreground: #0f172a;
+  --shell-muted: #526076;
+  --shell-border: rgba(148, 163, 184, 0.28);
 }
 
 @theme inline {
@@ -12,15 +19,20 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html[data-theme="dark"] {
+  --background: #07111f;
+  --foreground: #e2e8f0;
+  --shell-background: #07111f;
+  --shell-surface: rgba(15, 23, 42, 0.92);
+  --shell-elevated: #111c2f;
+  --panel-background: #f8fafc;
+  --shell-foreground: #e2e8f0;
+  --shell-muted: #94a3b8;
+  --shell-border: rgba(148, 163, 184, 0.18);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), Helvetica, sans-serif;
 }
