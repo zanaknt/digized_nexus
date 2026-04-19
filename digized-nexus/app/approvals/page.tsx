@@ -5,13 +5,13 @@ import { approvals } from "@/src/lib/data/approvals";
 function ApprovalRow({
   actionTitle,
   relatedIncident,
-  riskLevel,
+  severity,
   requestedBy,
   status,
 }: {
   actionTitle: string;
   relatedIncident: string;
-  riskLevel: string;
+  severity: string;
   requestedBy: string;
   status: string;
 }) {
@@ -20,7 +20,7 @@ function ApprovalRow({
       <div className="font-medium text-slate-900">{actionTitle}</div>
       <div>{relatedIncident}</div>
       <div>
-        <Badge type="severity" value={riskLevel} />
+        <Badge type="severity" value={severity} />
       </div>
       <div>{requestedBy}</div>
       <div className="flex items-center gap-2">

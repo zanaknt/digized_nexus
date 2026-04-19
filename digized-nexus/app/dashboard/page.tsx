@@ -133,7 +133,7 @@ export default function DashboardPage() {
                 </div>
                 <div className="mt-3 flex items-center justify-between gap-4 text-sm text-slate-600">
                   <div>Related incident: {approval.relatedIncident}</div>
-                  <Badge type="severity" value={approval.riskLevel} />
+                  <Badge type="severity" value={approval.severity} />
                 </div>
               </div>
             ))}
