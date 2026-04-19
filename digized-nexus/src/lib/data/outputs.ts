@@ -1,0 +1,38 @@
+export const outputs = [
+  {
+    id: "output-1",
+    title: "Heartbeat Report",
+    type: "report",
+    relatedAgent: "Orion",
+    relatedEntity: "Node-3",
+    createdAt: "2026-04-19 08:45",
+    preview: "All systems operational. No anomalies detected in the last hour.",
+  },
+  {
+    id: "output-2",
+    title: "Sync Analysis",
+    type: "analysis",
+    relatedAgent: "Nova",
+    relatedEntity: "Data Pipeline",
+    createdAt: "2026-04-18 22:30",
+    preview: "Lag detected in replication. Recommended: increase buffer size.",
+  },
+  {
+    id: "output-3",
+    title: "Alert Log",
+    type: "log",
+    relatedAgent: "Vega",
+    relatedEntity: "Monitoring System",
+    createdAt: "2026-04-18 21:45",
+    preview: "Rule evaluation failed. Retrying in 5 minutes.",
+  },
+  {
+    id: "output-4",
+    title: "Performance Summary",
+    type: "report",
+    relatedAgent: "Nova",
+    relatedEntity: "Global Metrics",
+    createdAt: "2026-04-18 20:00",
+    preview: "Average response time: 120ms. Peak load handled successfully.",
+  },
+];

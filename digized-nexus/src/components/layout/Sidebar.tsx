@@ -39,6 +39,12 @@ export default function Sidebar() {
         >
           Settings
         </a>
+        <a
+          href="/outputs"
+          className="block rounded px-2 py-1 hover:bg-slate-100"
+        >
+          Outputs
+        </a>
       </nav>
     </aside>
   );
