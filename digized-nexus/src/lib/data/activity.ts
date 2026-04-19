@@ -1,0 +1,58 @@
+export const activities = [
+  {
+    id: "activity-1",
+    title: "Incident created",
+    type: "incident",
+    relatedEntity: "Agent heartbeat missing",
+    timestamp: "2026-04-19 09:12",
+  },
+  {
+    id: "activity-2",
+    title: "Agent status changed",
+    type: "agent",
+    relatedEntity: "Orion",
+    timestamp: "2026-04-19 08:45",
+  },
+  {
+    id: "activity-3",
+    title: "Incident updated",
+    type: "incident",
+    relatedEntity: "Data sync delay",
+    timestamp: "2026-04-19 08:45",
+  },
+  {
+    id: "activity-4",
+    title: "Approval requested",
+    type: "approval",
+    relatedEntity: "Restart monitoring agent",
+    timestamp: "2026-04-19 08:30",
+  },
+  {
+    id: "activity-5",
+    title: "Agent status changed",
+    type: "agent",
+    relatedEntity: "Nova",
+    timestamp: "2026-04-18 22:30",
+  },
+  {
+    id: "activity-6",
+    title: "Incident resolved",
+    type: "incident",
+    relatedEntity: "Alert rule failed",
+    timestamp: "2026-04-18 22:30",
+  },
+  {
+    id: "activity-7",
+    title: "Approval requested",
+    type: "approval",
+    relatedEntity: "Re-run sync pipeline",
+    timestamp: "2026-04-18 22:00",
+  },
+  {
+    id: "activity-8",
+    title: "Agent status changed",
+    type: "agent",
+    relatedEntity: "Vega",
+    timestamp: "2026-04-18 21:45",
+  },
+];
