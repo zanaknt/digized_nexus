@@ -8,6 +8,7 @@ function OutputItem({
   id,
   title,
   type,
+  relatedAgentId,
   relatedAgent,
   relatedEntity,
   createdAt,
@@ -16,6 +17,7 @@ function OutputItem({
   id: string;
   title: string;
   type: string;
+  relatedAgentId: string;
   relatedAgent: string;
   relatedEntity: string;
   createdAt: string;
@@ -33,7 +35,14 @@ function OutputItem({
             <Badge type="status" value={type} />
           </Link>
           <div className="mt-1 text-slate-600">
-            Agent: {relatedAgent} · Entity: {relatedEntity}
+            Agent:{" "}
+            <Link
+              href={`/agents/${relatedAgentId}`}
+              className="underline hover:text-slate-700"
+            >
+              {relatedAgent}
+            </Link>{" "}
+            · Entity: {relatedEntity}
           </div>
           <p className="mt-2 text-slate-700">{preview}</p>
         </div>

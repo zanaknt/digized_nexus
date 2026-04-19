@@ -46,6 +46,7 @@ export type Output = {
   id: string;
   title: string;
   type: OutputType;
+  relatedAgentId: string;
   relatedAgent: string;
   relatedEntity: string;
   createdAt: string;

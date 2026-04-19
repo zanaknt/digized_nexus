@@ -2,6 +2,7 @@ import Link from "next/link";
 import PageShell from "@/src/components/layout/PageShell";
 import Badge from "@/src/components/ui/Badge";
 import DetailSection from "@/src/components/ui/DetailSection";
+import { agents } from "@/src/lib/data/agents";
 import { approvals } from "@/src/lib/data/approvals";
 import { incidents } from "@/src/lib/data/incidents";
 import { outputs } from "@/src/lib/data/outputs";
@@ -28,6 +29,8 @@ export default function OutputDetailPage({
     );
   }
 
+  const relatedAgent =
+    agents.find((agent) => agent.id === output.relatedAgentId) ?? null;
   const relatedProject =
     projects.find((project) => project.recentOutputIds.includes(output.id)) ??
     null;
@@ -54,7 +57,19 @@ export default function OutputDetailPage({
             </div>
             <div>
               <div className="font-semibold text-slate-900">Related agent</div>
-              <div className="mt-1">{output.relatedAgent}</div>
+              <div className="mt-1">
+                {relatedAgent ? (
+                  <Link
+                    href={`/agents/${relatedAgent.id}`}
+                    className="inline-flex items-center gap-2 text-slate-900 hover:text-slate-700"
+                  >
+                    <span className="font-medium">{relatedAgent.name}</span>
+                    <Badge type="status" value={relatedAgent.status} />
+                  </Link>
+                ) : (
+                  output.relatedAgent
+                )}
+              </div>
             </div>
             <div>
               <div className="font-semibold text-slate-900">Created at</div>
@@ -69,6 +84,28 @@ export default function OutputDetailPage({
               </div>
             </div>
           </div>
+        </DetailSection>
+
+        <DetailSection title="Related agent">
+          {relatedAgent ? (
+            <div className="mt-3 rounded-md border border-slate-200 bg-white px-3 py-3 text-sm text-slate-700">
+              <Link
+                href={`/agents/${relatedAgent.id}`}
+                className="font-medium text-slate-900 hover:text-slate-700"
+              >
+                {relatedAgent.name}
+              </Link>
+              <div className="mt-1 flex flex-wrap items-center gap-2 text-slate-600">
+                <span>{relatedAgent.role}</span>
+                <Badge type="status" value={relatedAgent.status} />
+                <span>Last run: {relatedAgent.lastRun}</span>
+              </div>
+            </div>
+          ) : (
+            <p className="mt-3 text-sm text-slate-600">
+              No related agent available.
+            </p>
+          )}
         </DetailSection>
 
         <DetailSection title="Full preview">

@@ -4,6 +4,7 @@ import Badge from "@/src/components/ui/Badge";
 import DetailSection from "@/src/components/ui/DetailSection";
 import { incidents } from "@/src/lib/data/incidents";
 import { agents } from "@/src/lib/data/agents";
+import { outputs } from "@/src/lib/data/outputs";
 
 export default function AgentDetailPage({
   params,
@@ -29,6 +30,9 @@ export default function AgentDetailPage({
   const linkedIncidents = incidents.filter((incident) =>
     agent.linkedIncidentIds.includes(incident.id),
   );
+  const relatedOutputs = outputs
+    .filter((output) => output.relatedAgentId === agent.id)
+    .sort((a, b) => b.createdAt.localeCompare(a.createdAt));
 
   return (
     <PageShell
@@ -57,16 +61,30 @@ export default function AgentDetailPage({
         </DetailSection>
 
         <DetailSection title="Recent outputs">
-          <ul className="mt-3 space-y-2 text-sm text-slate-700">
-            {agent.recentOutputs.map((output, index) => (
-              <li
-                key={index}
-                className="rounded-md bg-white border border-slate-200 px-3 py-2"
-              >
-                {output}
-              </li>
-            ))}
-          </ul>
+          {relatedOutputs.length ? (
+            <ul className="mt-3 space-y-2 text-sm text-slate-700">
+              {relatedOutputs.map((output) => (
+                <li
+                  key={output.id}
+                  className="rounded-md border border-slate-200 bg-white px-3 py-3"
+                >
+                  <Link
+                    href={`/outputs/${output.id}`}
+                    className="font-medium text-slate-900 hover:text-slate-700"
+                  >
+                    {output.title}
+                  </Link>
+                  <div className="mt-1 flex flex-wrap items-center gap-2 text-slate-600">
+                    <Badge type="status" value={output.type} />
+                    <span>{output.createdAt}</span>
+                  </div>
+                  <p className="mt-2 text-slate-700">{output.preview}</p>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="mt-3 text-sm text-slate-600">No recent outputs.</p>
+          )}
         </DetailSection>
 
         <DetailSection title="Linked incidents">
