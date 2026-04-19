@@ -1,0 +1,38 @@
+export const projects = [
+  {
+    id: "project-1",
+    name: "Monitoring System",
+    status: "active",
+    owner: "Ops Team",
+    linkedAgentsCount: 1,
+    linkedIncidentsCount: 1,
+    description: "Core monitoring infrastructure for system health tracking.",
+  },
+  {
+    id: "project-2",
+    name: "Data Pipeline",
+    status: "active",
+    owner: "Data Team",
+    linkedAgentsCount: 1,
+    linkedIncidentsCount: 1,
+    description: "Real-time data synchronization and processing pipeline.",
+  },
+  {
+    id: "project-3",
+    name: "Alert Management",
+    status: "idle",
+    owner: "Alerts Team",
+    linkedAgentsCount: 1,
+    linkedIncidentsCount: 1,
+    description: "Automated alert generation and notification system.",
+  },
+  {
+    id: "project-4",
+    name: "Analytics Platform",
+    status: "active",
+    owner: "Analytics Team",
+    linkedAgentsCount: 0,
+    linkedIncidentsCount: 0,
+    description: "Business intelligence and reporting platform.",
+  },
+];
