@@ -1,6 +1,11 @@
 export type AgentStatus = "active" | "idle" | "error";
 export type IncidentSeverity = "low" | "medium" | "high";
 export type IncidentStatus = "open" | "investigating" | "resolved";
+export type IncidentTimelineEventType =
+  | "detected"
+  | "assigned"
+  | "reviewed"
+  | "status updated";
 export type ApprovalStatus = "pending" | "approved" | "rejected";
 export type OutputType = "report" | "analysis" | "log";
 export type ProjectStatus = "active" | "idle";
@@ -27,6 +32,13 @@ export type Incident = {
   summary: string;
   suggestedAction: string;
   linkedAgentId: string;
+  timeline: {
+    id: string;
+    type: IncidentTimelineEventType;
+    timestamp: string;
+    actor: string;
+    note: string;
+  }[];
 };
 
 export type Approval = {

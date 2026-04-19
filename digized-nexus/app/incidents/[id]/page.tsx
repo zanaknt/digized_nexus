@@ -87,6 +87,26 @@ export default function IncidentDetailPage({
           )}
         </DetailSection>
 
+        <DetailSection title="Timeline">
+          <ul className="mt-3 space-y-3">
+            {incident.timeline.map((event) => (
+              <li
+                key={event.id}
+                className="rounded-md border border-slate-200 bg-white px-3 py-3 text-sm text-slate-700"
+              >
+                <div className="flex flex-wrap items-center gap-2">
+                  <Badge type="status" value={event.type} />
+                  <span className="font-medium text-slate-900">
+                    {event.timestamp}
+                  </span>
+                  <span className="text-slate-600">· {event.actor}</span>
+                </div>
+                <p className="mt-2 text-slate-700">{event.note}</p>
+              </li>
+            ))}
+          </ul>
+        </DetailSection>
+
         <Link href="/incidents" className="text-sm text-slate-700 underline">
           Back to incidents
         </Link>
