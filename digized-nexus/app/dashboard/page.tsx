@@ -19,16 +19,7 @@ export default function DashboardPage() {
   const latestIncident = [...incidents].sort((a, b) =>
     b.createdAt.localeCompare(a.createdAt),
   )[0];
-  const pendingApprovalItems = approvals.slice(0, 3).map((approval) => {
-    const relatedIncident = incidents.find(
-      (incident) => incident.title === approval.relatedIncident,
-    );
-
-    return {
-      ...approval,
-      relatedIncidentId: relatedIncident?.id ?? null,
-    };
-  });
+  const pendingApprovalItems = approvals.slice(0, 3);
 
   return (
     <PageShell
@@ -179,9 +170,9 @@ export default function DashboardPage() {
                 <div className="mt-3 flex items-center justify-between gap-4 text-sm text-slate-600">
                   <div>
                     Related incident:{" "}
-                    {approval.relatedIncidentId ? (
+                    {approval.incidentId ? (
                       <Link
-                        href={`/incidents/${approval.relatedIncidentId}`}
+                        href={`/incidents/${approval.incidentId}`}
                         className="underline"
                       >
                         {approval.relatedIncident}
