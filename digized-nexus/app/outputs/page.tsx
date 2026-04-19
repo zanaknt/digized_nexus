@@ -1,9 +1,11 @@
+import Link from "next/link";
 import PageShell from "@/src/components/layout/PageShell";
 import Badge from "@/src/components/ui/Badge";
 import ListRow from "@/src/components/ui/ListRow";
 import { outputs } from "@/src/lib/data/outputs";
 
 function OutputItem({
+  id,
   title,
   type,
   relatedAgent,
@@ -11,6 +13,7 @@ function OutputItem({
   createdAt,
   preview,
 }: {
+  id: string;
   title: string;
   type: string;
   relatedAgent: string;
@@ -22,10 +25,13 @@ function OutputItem({
     <ListRow className="py-4">
       <div className="flex items-start justify-between gap-4">
         <div className="flex-1">
-          <div className="flex items-center gap-2">
+          <Link
+            href={`/outputs/${id}`}
+            className="flex items-center gap-2 hover:text-slate-700"
+          >
             <h3 className="font-medium text-slate-900">{title}</h3>
             <Badge type="status" value={type} />
-          </div>
+          </Link>
           <div className="mt-1 text-slate-600">
             Agent: {relatedAgent} · Entity: {relatedEntity}
           </div>
