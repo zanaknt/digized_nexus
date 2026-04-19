@@ -1,7 +1,7 @@
 export type AgentStatus = "active" | "idle" | "error";
 export type IncidentSeverity = "low" | "medium" | "high";
 export type IncidentStatus = "open" | "investigating" | "resolved";
-export type ApprovalStatus = "pending";
+export type ApprovalStatus = "pending" | "approved" | "rejected";
 export type OutputType = "report" | "analysis" | "log";
 export type ProjectStatus = "active" | "idle";
 export type ServerStatus = "active" | "idle" | "error";

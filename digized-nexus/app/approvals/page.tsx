@@ -2,6 +2,7 @@ import Link from "next/link";
 import PageShell from "@/src/components/layout/PageShell";
 import Badge from "@/src/components/ui/Badge";
 import ListRow from "@/src/components/ui/ListRow";
+import MockApprovalActions from "@/src/components/approvals/MockApprovalActions";
 import { getApprovals } from "@/src/lib/data-access";
 
 function ApprovalRow({
@@ -32,16 +33,8 @@ function ApprovalRow({
         <Badge type="severity" value={severity} />
       </div>
       <div>{requestedBy}</div>
-      <div className="flex items-center gap-2">
-        <Badge type="status" value={status} />
-        <div className="flex gap-2">
-          <button className="rounded border border-slate-300 bg-white px-3 py-1 text-xs text-slate-700 hover:bg-slate-100">
-            Approve
-          </button>
-          <button className="rounded border border-slate-300 bg-white px-3 py-1 text-xs text-slate-700 hover:bg-slate-100">
-            Reject
-          </button>
-        </div>
+      <div>
+        <MockApprovalActions initialStatus={status} />
       </div>
     </ListRow>
   );

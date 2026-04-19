@@ -1,6 +1,7 @@
 import Link from "next/link";
 import PageShell from "@/src/components/layout/PageShell";
 import Badge from "@/src/components/ui/Badge";
+import MockApprovalActions from "@/src/components/approvals/MockApprovalActions";
 import DetailSection from "@/src/components/ui/DetailSection";
 import {
   findApprovalById,
@@ -41,7 +42,10 @@ export default function ApprovalDetailPage({
             <div>
               <div className="font-semibold text-slate-900">Status</div>
               <div className="mt-1">
-                <Badge type="status" value={approval.status} />
+                <MockApprovalActions
+                  initialStatus={approval.status}
+                  showHelperText
+                />
               </div>
             </div>
             <div>

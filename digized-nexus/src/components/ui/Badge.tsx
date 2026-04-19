@@ -11,6 +11,8 @@ const badgeStyles: Record<string, string> = {
   investigating: "bg-amber-100 text-amber-800",
   resolved: "bg-emerald-100 text-emerald-800",
   pending: "bg-amber-100 text-amber-800",
+  approved: "bg-emerald-100 text-emerald-800",
+  rejected: "bg-rose-100 text-rose-800",
   incident: "bg-blue-100 text-blue-800",
   agent: "bg-purple-100 text-purple-800",
   approval: "bg-orange-100 text-orange-800",
