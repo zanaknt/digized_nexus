@@ -1,5 +1,6 @@
 import Link from "next/link";
 import PageShell from "@/src/components/layout/PageShell";
+import Badge from "@/src/components/ui/Badge";
 import { incidents } from "@/src/lib/data/incidents";
 
 function IncidentRow({
@@ -23,8 +24,12 @@ function IncidentRow({
       className="grid grid-cols-5 gap-4 border-b border-slate-200 px-4 py-3 text-sm text-slate-700 last:border-b-0 hover:bg-slate-100"
     >
       <div className="font-medium text-slate-900">{title}</div>
-      <div>{severity}</div>
-      <div>{status}</div>
+      <div>
+        <Badge type="severity" value={severity} />
+      </div>
+      <div>
+        <Badge type="status" value={status} />
+      </div>
       <div>{source}</div>
       <div>{createdAt}</div>
     </Link>

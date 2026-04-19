@@ -1,5 +1,6 @@
 import Link from "next/link";
 import PageShell from "@/src/components/layout/PageShell";
+import Badge from "@/src/components/ui/Badge";
 import { agents } from "@/src/lib/data/agents";
 
 function AgentRow({
@@ -22,7 +23,9 @@ function AgentRow({
     >
       <div className="font-medium text-slate-900">{name}</div>
       <div>{role}</div>
-      <div>{status}</div>
+      <div>
+        <Badge type="status" value={status} />
+      </div>
       <div>{lastRun}</div>
     </Link>
   );
