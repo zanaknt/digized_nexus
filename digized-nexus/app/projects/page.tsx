@@ -1,24 +1,30 @@
+import Link from "next/link";
 import PageShell from "@/src/components/layout/PageShell";
 import Badge from "@/src/components/ui/Badge";
 import { projects } from "@/src/lib/data/projects";
 
 function ProjectItem({
+  id,
   name,
   status,
   owner,
-  linkedAgentsCount,
-  linkedIncidentsCount,
+  linkedAgentIds,
+  linkedIncidentIds,
   description,
 }: {
+  id: string;
   name: string;
   status: string;
   owner: string;
-  linkedAgentsCount: number;
-  linkedIncidentsCount: number;
+  linkedAgentIds: string[];
+  linkedIncidentIds: string[];
   description: string;
 }) {
   return (
-    <div className="border-b border-slate-200 px-4 py-4 text-sm text-slate-700 last:border-b-0">
+    <Link
+      href={`/projects/${id}`}
+      className="block border-b border-slate-200 px-4 py-4 text-sm text-slate-700 last:border-b-0 hover:bg-slate-100"
+    >
       <div className="flex items-start justify-between gap-4">
         <div className="flex-1">
           <div className="flex items-center gap-2">
@@ -26,13 +32,13 @@ function ProjectItem({
             <Badge type="status" value={status} />
           </div>
           <div className="mt-1 text-slate-600">
-            Owner: {owner} · Agents: {linkedAgentsCount} · Incidents:{" "}
-            {linkedIncidentsCount}
+            Owner: {owner} · Agents: {linkedAgentIds.length} · Incidents:{" "}
+            {linkedIncidentIds.length}
           </div>
           <p className="mt-2 text-slate-700">{description}</p>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
 
