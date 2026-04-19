@@ -1,5 +1,6 @@
 import PageShell from "@/src/components/layout/PageShell";
 import Badge from "@/src/components/ui/Badge";
+import ListRow from "@/src/components/ui/ListRow";
 import { approvals } from "@/src/lib/data/approvals";
 
 function ApprovalRow({
@@ -16,7 +17,7 @@ function ApprovalRow({
   status: string;
 }) {
   return (
-    <div className="grid grid-cols-[2.2fr_1.2fr_0.9fr_1fr_1.5fr] gap-4 border-b border-slate-200 px-4 py-3 text-sm text-slate-700 last:border-b-0">
+    <ListRow className="grid grid-cols-[2.2fr_1.2fr_0.9fr_1fr_1.5fr] gap-4 py-3">
       <div className="font-medium text-slate-900">{actionTitle}</div>
       <div>{relatedIncident}</div>
       <div>
@@ -34,7 +35,7 @@ function ApprovalRow({
           </button>
         </div>
       </div>
-    </div>
+    </ListRow>
   );
 }
 

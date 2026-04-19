@@ -1,5 +1,6 @@
 import PageShell from "@/src/components/layout/PageShell";
 import Badge from "@/src/components/ui/Badge";
+import ListRow from "@/src/components/ui/ListRow";
 import { activities } from "@/src/lib/data/activity";
 
 function ActivityItem({
@@ -14,14 +15,14 @@ function ActivityItem({
   timestamp: string;
 }) {
   return (
-    <div className="flex items-center justify-between border-b border-slate-200 px-4 py-3 text-sm text-slate-700 last:border-b-0">
+    <ListRow className="flex items-center justify-between py-3">
       <div className="flex items-center gap-4">
         <div className="font-medium text-slate-900">{title}</div>
         <Badge type="status" value={type} />
         <div className="text-slate-600">· {relatedEntity}</div>
       </div>
       <div className="text-slate-500">{timestamp}</div>
-    </div>
+    </ListRow>
   );
 }
 

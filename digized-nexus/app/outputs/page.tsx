@@ -1,5 +1,6 @@
 import PageShell from "@/src/components/layout/PageShell";
 import Badge from "@/src/components/ui/Badge";
+import ListRow from "@/src/components/ui/ListRow";
 import { outputs } from "@/src/lib/data/outputs";
 
 function OutputItem({
@@ -18,7 +19,7 @@ function OutputItem({
   preview: string;
 }) {
   return (
-    <div className="border-b border-slate-200 px-4 py-4 text-sm text-slate-700 last:border-b-0">
+    <ListRow className="py-4">
       <div className="flex items-start justify-between gap-4">
         <div className="flex-1">
           <div className="flex items-center gap-2">
@@ -32,7 +33,7 @@ function OutputItem({
         </div>
         <div className="text-slate-500">{createdAt}</div>
       </div>
-    </div>
+    </ListRow>
   );
 }
 
