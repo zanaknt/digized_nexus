@@ -8,42 +8,60 @@ import {
   getOutputs,
 } from "@/src/lib/data-access";
 
+function getNewestByCreatedAt<T extends { createdAt: string }>(items: T[]) {
+  return [...items].sort((a, b) => b.createdAt.localeCompare(a.createdAt))[0];
+}
+
 export default function DashboardPage() {
   const agents = getAgents();
   const approvals = getApprovals();
   const incidents = getIncidents();
   const outputs = getOutputs();
-  const totalAgents = agents.length;
-  const openIncidents = incidents.filter(
-    (incident) => incident.status === "open",
-  ).length;
-  const pendingApprovals = approvals.filter(
-    (approval) => approval.status === "pending",
-  ).length;
-  const errorsToday = incidents.filter(
-    (incident) => incident.severity === "high",
-  ).length;
-  const latestIncident = [...incidents].sort((a, b) =>
-    b.createdAt.localeCompare(a.createdAt),
-  )[0];
+  const metrics = [
+    {
+      href: "/agents",
+      label: "Active agents",
+      value: agents.length,
+    },
+    {
+      href: "/incidents",
+      label: "Open incidents",
+      value: incidents.filter((incident) => incident.status === "open").length,
+    },
+    {
+      href: "/approvals",
+      label: "Pending approvals",
+      value: approvals.filter((approval) => approval.status === "pending")
+        .length,
+    },
+    {
+      href: "/incidents",
+      label: "High-severity incidents",
+      value: incidents.filter((incident) => incident.severity === "high")
+        .length,
+    },
+  ];
+  const latestIncident = getNewestByCreatedAt(incidents);
   const latestIncidentOutput =
-    [...outputs]
-      .filter((output) => output.linkedIncidentIds.includes(latestIncident.id))
-      .sort((a, b) => b.createdAt.localeCompare(a.createdAt))[0] ?? null;
+    getNewestByCreatedAt(
+      outputs.filter((output) =>
+        output.linkedIncidentIds.includes(latestIncident.id),
+      ),
+    ) ?? null;
   const pendingApprovalItems = approvals.slice(0, 3).map((approval) => {
     const linkedOutput =
-      [...outputs]
-        .filter((output) => output.linkedApprovalIds.includes(approval.id))
-        .sort((a, b) => b.createdAt.localeCompare(a.createdAt))[0] ?? null;
+      getNewestByCreatedAt(
+        outputs.filter((output) => output.linkedApprovalIds.includes(approval.id)),
+      ) ?? null;
 
     return {
       ...approval,
       linkedOutput,
     };
   });
-  const recentOutputs = [...outputs]
-    .sort((a, b) => b.createdAt.localeCompare(a.createdAt))
-    .slice(0, 3);
+  const recentOutputs = [...outputs].sort((a, b) =>
+    b.createdAt.localeCompare(a.createdAt),
+  );
 
   return (
     <PageShell
@@ -51,50 +69,20 @@ export default function DashboardPage() {
       subtitle="This is the initial dashboard skeleton. Use this space for key metrics and quick links."
     >
       <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <Link
-          href="/agents"
-          className="rounded-lg border border-slate-200 bg-slate-50 p-5 shadow-sm transition hover:border-slate-300 hover:bg-white"
-        >
-          <div className="text-xs font-semibold uppercase tracking-wide text-slate-500">
-            Active agents
-          </div>
-          <div className="mt-3 text-3xl font-semibold text-slate-900">
-            {totalAgents}
-          </div>
-        </Link>
-        <Link
-          href="/incidents"
-          className="rounded-lg border border-slate-200 bg-slate-50 p-5 shadow-sm transition hover:border-slate-300 hover:bg-white"
-        >
-          <div className="text-xs font-semibold uppercase tracking-wide text-slate-500">
-            Open incidents
-          </div>
-          <div className="mt-3 text-3xl font-semibold text-slate-900">
-            {openIncidents}
-          </div>
-        </Link>
-        <Link
-          href="/approvals"
-          className="rounded-lg border border-slate-200 bg-slate-50 p-5 shadow-sm transition hover:border-slate-300 hover:bg-white"
-        >
-          <div className="text-xs font-semibold uppercase tracking-wide text-slate-500">
-            Pending approvals
-          </div>
-          <div className="mt-3 text-3xl font-semibold text-slate-900">
-            {pendingApprovals}
-          </div>
-        </Link>
-        <Link
-          href="/incidents"
-          className="rounded-lg border border-slate-200 bg-slate-50 p-5 shadow-sm transition hover:border-slate-300 hover:bg-white"
-        >
-          <div className="text-xs font-semibold uppercase tracking-wide text-slate-500">
-            High-severity incidents
-          </div>
-          <div className="mt-3 text-3xl font-semibold text-slate-900">
-            {errorsToday}
-          </div>
-        </Link>
+        {metrics.map((metric) => (
+          <Link
+            key={metric.label}
+            href={metric.href}
+            className="rounded-lg border border-slate-200 bg-slate-50 p-5 shadow-sm transition hover:border-slate-300 hover:bg-white"
+          >
+            <div className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+              {metric.label}
+            </div>
+            <div className="mt-3 text-3xl font-semibold text-slate-900">
+              {metric.value}
+            </div>
+          </Link>
+        ))}
       </section>
 
       <section className="mt-6 grid gap-4 lg:grid-cols-2">
@@ -275,7 +263,7 @@ export default function DashboardPage() {
         </div>
 
         <div className="mt-6 space-y-4">
-          {recentOutputs.map((output) => (
+          {recentOutputs.slice(0, 3).map((output) => (
             <div
               key={output.id}
               className="rounded-2xl border border-slate-200 bg-slate-50 p-4"
