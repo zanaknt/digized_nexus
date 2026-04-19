@@ -1,6 +1,7 @@
 import Link from "next/link";
 import PageShell from "@/src/components/layout/PageShell";
 import Badge from "@/src/components/ui/Badge";
+import DetailSection from "@/src/components/ui/DetailSection";
 import { incidents } from "@/src/lib/data/incidents";
 import { agents } from "@/src/lib/data/agents";
 
@@ -33,8 +34,7 @@ export default function IncidentDetailPage({
       subtitle={`${incident.severity} · ${incident.status} · ${incident.source}`}
     >
       <div className="space-y-6">
-        <section className="rounded-lg border border-slate-200 bg-slate-50 p-5">
-          <h2 className="text-sm font-semibold text-slate-900">Details</h2>
+        <DetailSection title="Details">
           <div className="mt-4 grid gap-4 text-sm text-slate-700 sm:grid-cols-3">
             <div>
               <div className="font-semibold text-slate-900">Created at</div>
@@ -57,26 +57,19 @@ export default function IncidentDetailPage({
               </div>
             </div>
           </div>
-        </section>
+        </DetailSection>
 
-        <section className="rounded-lg border border-slate-200 bg-slate-50 p-5">
-          <h2 className="text-sm font-semibold text-slate-900">Summary</h2>
+        <DetailSection title="Summary">
           <p className="mt-3 text-sm text-slate-700">{incident.summary}</p>
-        </section>
+        </DetailSection>
 
-        <section className="rounded-lg border border-slate-200 bg-slate-50 p-5">
-          <h2 className="text-sm font-semibold text-slate-900">
-            Suggested action
-          </h2>
+        <DetailSection title="Suggested action">
           <p className="mt-3 text-sm text-slate-700">
             {incident.suggestedAction}
           </p>
-        </section>
+        </DetailSection>
 
-        <section className="rounded-lg border border-slate-200 bg-slate-50 p-5">
-          <h2 className="text-sm font-semibold text-slate-900">
-            Related agent
-          </h2>
+        <DetailSection title="Related agent">
           {agent ? (
             <Link
               href={`/agents/${agent.id}`}
@@ -90,7 +83,7 @@ export default function IncidentDetailPage({
               No linked agent available.
             </p>
           )}
-        </section>
+        </DetailSection>
 
         <Link href="/incidents" className="text-sm text-slate-700 underline">
           Back to incidents

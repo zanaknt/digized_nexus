@@ -1,6 +1,7 @@
 import Link from "next/link";
 import PageShell from "@/src/components/layout/PageShell";
 import Badge from "@/src/components/ui/Badge";
+import DetailSection from "@/src/components/ui/DetailSection";
 import { agents } from "@/src/lib/data/agents";
 import { incidents } from "@/src/lib/data/incidents";
 import { outputs } from "@/src/lib/data/outputs";
@@ -47,8 +48,7 @@ export default function ProjectDetailPage({
       subtitle={`Owner: ${project.owner} · Status: ${project.status}`}
     >
       <div className="space-y-6">
-        <section className="rounded-lg border border-slate-200 bg-slate-50 p-5">
-          <h2 className="text-sm font-semibold text-slate-900">Overview</h2>
+        <DetailSection title="Overview">
           <div className="mt-4 grid gap-4 text-sm text-slate-700 sm:grid-cols-3">
             <div>
               <div className="font-semibold text-slate-900">Status</div>
@@ -68,12 +68,9 @@ export default function ProjectDetailPage({
             </div>
           </div>
           <p className="mt-4 text-sm text-slate-700">{project.description}</p>
-        </section>
+        </DetailSection>
 
-        <section className="rounded-lg border border-slate-200 bg-slate-50 p-5">
-          <h2 className="text-sm font-semibold text-slate-900">
-            Linked agents
-          </h2>
+        <DetailSection title="Linked agents">
           {linkedAgents.length ? (
             <ul className="mt-3 space-y-2">
               {linkedAgents.map((agent) => (
@@ -97,12 +94,9 @@ export default function ProjectDetailPage({
           ) : (
             <p className="mt-3 text-sm text-slate-600">No linked agents.</p>
           )}
-        </section>
+        </DetailSection>
 
-        <section className="rounded-lg border border-slate-200 bg-slate-50 p-5">
-          <h2 className="text-sm font-semibold text-slate-900">
-            Linked incidents
-          </h2>
+        <DetailSection title="Linked incidents">
           {linkedIncidents.length ? (
             <ul className="mt-3 space-y-2">
               {linkedIncidents.map((incident) => (
@@ -126,12 +120,9 @@ export default function ProjectDetailPage({
           ) : (
             <p className="mt-3 text-sm text-slate-600">No linked incidents.</p>
           )}
-        </section>
+        </DetailSection>
 
-        <section className="rounded-lg border border-slate-200 bg-slate-50 p-5">
-          <h2 className="text-sm font-semibold text-slate-900">
-            Recent outputs
-          </h2>
+        <DetailSection title="Recent outputs">
           {recentOutputs.length ? (
             <ul className="mt-3 space-y-2">
               {recentOutputs.map((output) => (
@@ -155,7 +146,7 @@ export default function ProjectDetailPage({
           ) : (
             <p className="mt-3 text-sm text-slate-600">No recent outputs.</p>
           )}
-        </section>
+        </DetailSection>
 
         <Link href="/projects" className="text-sm text-slate-700 underline">
           Back to projects

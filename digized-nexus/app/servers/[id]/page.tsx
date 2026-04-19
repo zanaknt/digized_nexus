@@ -1,6 +1,7 @@
 import Link from "next/link";
 import PageShell from "@/src/components/layout/PageShell";
 import Badge from "@/src/components/ui/Badge";
+import DetailSection from "@/src/components/ui/DetailSection";
 import { activities } from "@/src/lib/data/activity";
 import { incidents } from "@/src/lib/data/incidents";
 import { projects } from "@/src/lib/data/projects";
@@ -43,8 +44,7 @@ export default function ServerDetailPage({
       subtitle={`Environment: ${server.environment} · Status: ${server.status}`}
     >
       <div className="space-y-6">
-        <section className="rounded-lg border border-slate-200 bg-slate-50 p-5">
-          <h2 className="text-sm font-semibold text-slate-900">Overview</h2>
+        <DetailSection title="Overview">
           <div className="mt-4 grid gap-4 text-sm text-slate-700 sm:grid-cols-3">
             <div>
               <div className="font-semibold text-slate-900">Environment</div>
@@ -62,12 +62,9 @@ export default function ServerDetailPage({
             </div>
           </div>
           <p className="mt-4 text-sm text-slate-700">{server.description}</p>
-        </section>
+        </DetailSection>
 
-        <section className="rounded-lg border border-slate-200 bg-slate-50 p-5">
-          <h2 className="text-sm font-semibold text-slate-900">
-            Linked projects
-          </h2>
+        <DetailSection title="Linked projects">
           {linkedProjects.length ? (
             <ul className="mt-3 space-y-2">
               {linkedProjects.map((project) => (
@@ -91,12 +88,9 @@ export default function ServerDetailPage({
           ) : (
             <p className="mt-3 text-sm text-slate-600">No linked projects.</p>
           )}
-        </section>
+        </DetailSection>
 
-        <section className="rounded-lg border border-slate-200 bg-slate-50 p-5">
-          <h2 className="text-sm font-semibold text-slate-900">
-            Recent incidents
-          </h2>
+        <DetailSection title="Recent incidents">
           {recentIncidents.length ? (
             <ul className="mt-3 space-y-2">
               {recentIncidents.map((incident) => (
@@ -120,12 +114,9 @@ export default function ServerDetailPage({
           ) : (
             <p className="mt-3 text-sm text-slate-600">No recent incidents.</p>
           )}
-        </section>
+        </DetailSection>
 
-        <section className="rounded-lg border border-slate-200 bg-slate-50 p-5">
-          <h2 className="text-sm font-semibold text-slate-900">
-            Recent activity
-          </h2>
+        <DetailSection title="Recent activity">
           {recentActivity.length ? (
             <ul className="mt-3 space-y-2">
               {recentActivity.map((activity) => (
@@ -148,7 +139,7 @@ export default function ServerDetailPage({
           ) : (
             <p className="mt-3 text-sm text-slate-600">No recent activity.</p>
           )}
-        </section>
+        </DetailSection>
 
         <Link href="/servers" className="text-sm text-slate-700 underline">
           Back to servers

@@ -1,6 +1,7 @@
 import PageShell from "@/src/components/layout/PageShell";
 import Link from "next/link";
 import Badge from "@/src/components/ui/Badge";
+import DetailSection from "@/src/components/ui/DetailSection";
 import { incidents } from "@/src/lib/data/incidents";
 import { agents } from "@/src/lib/data/agents";
 
@@ -35,8 +36,7 @@ export default function AgentDetailPage({
       subtitle={`Role: ${agent.role} · Status: ${agent.status}`}
     >
       <div className="space-y-6">
-        <section className="rounded-lg border border-slate-200 bg-slate-50 p-5">
-          <h2 className="text-sm font-semibold text-slate-900">Overview</h2>
+        <DetailSection title="Overview">
           <div className="mt-4 grid gap-4 text-sm text-slate-700 sm:grid-cols-3">
             <div>
               <div className="font-semibold text-slate-900">Role</div>
@@ -54,12 +54,9 @@ export default function AgentDetailPage({
             </div>
           </div>
           <div className="mt-4 text-sm text-slate-700">{agent.description}</div>
-        </section>
+        </DetailSection>
 
-        <section className="rounded-lg border border-slate-200 bg-slate-50 p-5">
-          <h2 className="text-sm font-semibold text-slate-900">
-            Recent outputs
-          </h2>
+        <DetailSection title="Recent outputs">
           <ul className="mt-3 space-y-2 text-sm text-slate-700">
             {agent.recentOutputs.map((output, index) => (
               <li
@@ -70,12 +67,9 @@ export default function AgentDetailPage({
               </li>
             ))}
           </ul>
-        </section>
+        </DetailSection>
 
-        <section className="rounded-lg border border-slate-200 bg-slate-50 p-5">
-          <h2 className="text-sm font-semibold text-slate-900">
-            Linked incidents
-          </h2>
+        <DetailSection title="Linked incidents">
           {linkedIncidents.length ? (
             <ul className="mt-3 space-y-2 text-sm text-slate-700">
               {linkedIncidents.map((incident) => (
@@ -99,7 +93,7 @@ export default function AgentDetailPage({
           ) : (
             <p className="mt-3 text-sm text-slate-600">No linked incidents.</p>
           )}
-        </section>
+        </DetailSection>
 
         <Link href="/agents" className="text-sm text-slate-700 underline">
           Back to agents
