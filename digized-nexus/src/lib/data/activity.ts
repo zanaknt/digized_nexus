@@ -1,9 +1,13 @@
-export const activities = [
+import type { Activity } from "@/src/lib/models";
+
+export const activities: Activity[] = [
   {
     id: "activity-1",
     title: "Incident created",
     type: "incident",
     relatedEntity: "Agent heartbeat missing",
+    relatedEntityType: "incident",
+    relatedEntityId: "incident-1",
     timestamp: "2026-04-19 09:12",
   },
   {
@@ -11,6 +15,8 @@ export const activities = [
     title: "Agent status changed",
     type: "agent",
     relatedEntity: "Orion",
+    relatedEntityType: "agent",
+    relatedEntityId: "agent-1",
     timestamp: "2026-04-19 08:45",
   },
   {
@@ -18,6 +24,8 @@ export const activities = [
     title: "Incident updated",
     type: "incident",
     relatedEntity: "Data sync delay",
+    relatedEntityType: "incident",
+    relatedEntityId: "incident-2",
     timestamp: "2026-04-19 08:45",
   },
   {
@@ -25,6 +33,8 @@ export const activities = [
     title: "Approval requested",
     type: "approval",
     relatedEntity: "Restart monitoring agent",
+    relatedEntityType: "approval",
+    relatedEntityId: "approval-1",
     timestamp: "2026-04-19 08:30",
   },
   {
@@ -32,6 +42,8 @@ export const activities = [
     title: "Agent status changed",
     type: "agent",
     relatedEntity: "Nova",
+    relatedEntityType: "agent",
+    relatedEntityId: "agent-2",
     timestamp: "2026-04-18 22:30",
   },
   {
@@ -39,6 +51,8 @@ export const activities = [
     title: "Incident resolved",
     type: "incident",
     relatedEntity: "Alert rule failed",
+    relatedEntityType: "incident",
+    relatedEntityId: "incident-3",
     timestamp: "2026-04-18 22:30",
   },
   {
@@ -46,6 +60,8 @@ export const activities = [
     title: "Approval requested",
     type: "approval",
     relatedEntity: "Re-run sync pipeline",
+    relatedEntityType: "approval",
+    relatedEntityId: "approval-2",
     timestamp: "2026-04-18 22:00",
   },
   {
@@ -53,6 +69,8 @@ export const activities = [
     title: "Agent status changed",
     type: "agent",
     relatedEntity: "Vega",
+    relatedEntityType: "agent",
+    relatedEntityId: "agent-3",
     timestamp: "2026-04-18 21:45",
   },
 ];

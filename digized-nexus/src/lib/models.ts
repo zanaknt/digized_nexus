@@ -1,4 +1,11 @@
 export type AgentStatus = "active" | "idle" | "error";
+export type ActivityEntityType =
+  | "agent"
+  | "incident"
+  | "approval"
+  | "output"
+  | "project"
+  | "server";
 export type IncidentSeverity = "low" | "medium" | "high";
 export type IncidentStatus = "open" | "investigating" | "resolved";
 export type IncidentTimelineEventType =
@@ -90,4 +97,14 @@ export type Server = {
   recentIncidentIds: string[];
   recentActivityIds: string[];
   description: string;
+};
+
+export type Activity = {
+  id: string;
+  title: string;
+  type: ActivityEntityType;
+  relatedEntity: string;
+  relatedEntityType: ActivityEntityType;
+  relatedEntityId: string;
+  timestamp: string;
 };
