@@ -251,6 +251,36 @@ export default function AgentDetailPage({
           </div>
         </div>
 
+        <section className="rounded-2xl border border-dashed border-[var(--shell-border)] bg-[var(--panel-subtle)] px-5 py-5">
+          <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+            <div>
+              <div className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--shell-muted)]">
+                Future execution dock
+              </div>
+              <div className="mt-2 text-sm font-semibold text-[var(--shell-foreground)]">
+                Reserved for terminal, logs, and command output
+              </div>
+              <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-600">
+                This workspace will support agent execution surfaces in a future
+                step. The current page remains focused on operational context,
+                outputs, and incident linkage.
+              </p>
+            </div>
+
+            <div className="grid gap-2 text-xs text-[var(--shell-muted)] sm:grid-cols-3 lg:min-w-[360px]">
+              <div className="rounded-xl border border-[var(--shell-border)] bg-[var(--panel-background)] px-3 py-3">
+                Terminal
+              </div>
+              <div className="rounded-xl border border-[var(--shell-border)] bg-[var(--panel-background)] px-3 py-3">
+                Logs
+              </div>
+              <div className="rounded-xl border border-[var(--shell-border)] bg-[var(--panel-background)] px-3 py-3">
+                Output stream
+              </div>
+            </div>
+          </div>
+        </section>
+
         <Link href="/agents" className="text-sm text-slate-700 underline">
           Back to agents
         </Link>
