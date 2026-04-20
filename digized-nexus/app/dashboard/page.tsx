@@ -73,23 +73,29 @@ export default function DashboardPage() {
           <Link
             key={metric.label}
             href={metric.href}
-            className="rounded-lg border border-slate-200 bg-slate-50 p-5 shadow-sm transition hover:border-slate-300 hover:bg-white"
+            className="rounded-2xl border border-[var(--shell-border)] bg-[var(--panel-subtle)] p-5 shadow-[var(--shell-shadow)] transition hover:bg-[var(--panel-background)]"
           >
-            <div className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+            <div className="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--shell-muted)]">
               {metric.label}
             </div>
-            <div className="mt-3 text-3xl font-semibold text-slate-900">
+            <div className="mt-4 text-3xl font-semibold text-[var(--shell-foreground)]">
               {metric.value}
+            </div>
+            <div className="mt-4 text-xs font-medium text-[var(--shell-muted)]">
+              Open workspace
             </div>
           </Link>
         ))}
       </section>
 
       <section className="mt-6 grid gap-4 lg:grid-cols-2">
-        <div className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
+        <div className="rounded-2xl border border-[var(--shell-border)] bg-[var(--panel-background)] p-6 shadow-[var(--shell-shadow)]">
           <div className="flex items-center justify-between">
             <div>
-              <h2 className="text-lg font-semibold text-slate-900">
+              <div className="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--shell-muted)]">
+                Incident overview
+              </div>
+              <h2 className="mt-2 text-lg font-semibold text-[var(--shell-foreground)]">
                 Latest incident
               </h2>
               <p className="mt-1 text-sm text-slate-500">
@@ -105,20 +111,20 @@ export default function DashboardPage() {
             <div>
               <Link
                 href={`/incidents/${latestIncident.id}`}
-                className="text-sm font-semibold text-slate-700 hover:text-slate-900"
+                className="text-base font-semibold text-[var(--shell-foreground)] hover:text-slate-700"
               >
                 {latestIncident.title}
               </Link>
-              <div className="mt-2 text-sm leading-6 text-slate-600">
+              <div className="mt-3 text-sm leading-6 text-slate-600">
                 {latestIncident.summary}
               </div>
             </div>
             <div className="grid gap-3 sm:grid-cols-2">
               <Link
                 href={`/incidents/${latestIncident.id}`}
-                className="rounded-2xl bg-slate-50 p-4 hover:bg-slate-100"
+                className="rounded-2xl border border-[var(--shell-border)] bg-[var(--panel-subtle)] p-4 hover:bg-[var(--panel-hover)]"
               >
-                <div className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+                <div className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--shell-muted)]">
                   Status
                 </div>
                 <div className="mt-2">
@@ -127,28 +133,28 @@ export default function DashboardPage() {
               </Link>
               <Link
                 href={`/incidents/${latestIncident.id}`}
-                className="rounded-2xl bg-slate-50 p-4 hover:bg-slate-100"
+                className="rounded-2xl border border-[var(--shell-border)] bg-[var(--panel-subtle)] p-4 hover:bg-[var(--panel-hover)]"
               >
-                <div className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+                <div className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--shell-muted)]">
                   Source
                 </div>
-                <div className="mt-2 text-sm font-semibold text-slate-900">
+                <div className="mt-2 text-sm font-semibold text-[var(--shell-foreground)]">
                   {latestIncident.source}
                 </div>
               </Link>
             </div>
             {latestIncidentOutput ? (
-              <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
-                <div className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+              <div className="rounded-2xl border border-[var(--shell-border)] bg-[var(--panel-subtle)] p-4">
+                <div className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--shell-muted)]">
                   Related output
                 </div>
                 <Link
                   href={`/outputs/${latestIncidentOutput.id}`}
-                  className="mt-2 block text-sm font-semibold text-slate-900 hover:text-slate-700"
+                  className="mt-3 block text-sm font-semibold text-[var(--shell-foreground)] hover:text-slate-700"
                 >
                   {latestIncidentOutput.title}
                 </Link>
-                <div className="mt-1 text-sm text-slate-600">
+                <div className="mt-2 text-sm text-slate-600">
                   Agent:{" "}
                   <Link
                     href={`/agents/${latestIncidentOutput.relatedAgentId}`}
@@ -172,9 +178,12 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        <div className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
+        <div className="rounded-2xl border border-[var(--shell-border)] bg-[var(--panel-background)] p-6 shadow-[var(--shell-shadow)]">
           <div>
-            <h2 className="text-lg font-semibold text-slate-900">
+            <div className="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--shell-muted)]">
+              Review queue
+            </div>
+            <h2 className="mt-2 text-lg font-semibold text-[var(--shell-foreground)]">
               Pending approvals
             </h2>
             <p className="mt-1 text-sm text-slate-500">
@@ -186,13 +195,13 @@ export default function DashboardPage() {
             {pendingApprovalItems.map((approval) => (
               <div
                 key={approval.id}
-                className="rounded-2xl border border-slate-200 bg-slate-50 p-4"
+                className="rounded-2xl border border-[var(--shell-border)] bg-[var(--panel-subtle)] p-4"
               >
                 <div className="flex items-start justify-between gap-4">
                   <div>
                     <Link
                       href="/approvals"
-                      className="text-sm font-semibold text-slate-900 hover:text-slate-700"
+                      className="text-sm font-semibold text-[var(--shell-foreground)] hover:text-slate-700"
                     >
                       {approval.actionTitle}
                     </Link>
@@ -236,7 +245,7 @@ export default function DashboardPage() {
           <div className="mt-6">
             <Link
               href="/approvals"
-              className="inline-flex items-center rounded-md bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-800"
+              className="inline-flex items-center rounded-xl bg-[var(--shell-foreground)] px-4 py-2 text-sm font-semibold text-[var(--panel-background)] hover:opacity-90"
             >
               Review all approvals
             </Link>
@@ -244,10 +253,13 @@ export default function DashboardPage() {
         </div>
       </section>
 
-      <section className="mt-6 rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
+      <section className="mt-6 rounded-2xl border border-[var(--shell-border)] bg-[var(--panel-background)] p-6 shadow-[var(--shell-shadow)]">
         <div className="flex items-center justify-between gap-4">
           <div>
-            <h2 className="text-lg font-semibold text-slate-900">
+            <div className="text-xs font-semibold uppercase tracking-[0.16em] text-[var(--shell-muted)]">
+              Analysis feed
+            </div>
+            <h2 className="mt-2 text-lg font-semibold text-[var(--shell-foreground)]">
               Recent outputs
             </h2>
             <p className="mt-1 text-sm text-slate-500">
@@ -266,13 +278,13 @@ export default function DashboardPage() {
           {recentOutputs.slice(0, 3).map((output) => (
             <div
               key={output.id}
-              className="rounded-2xl border border-slate-200 bg-slate-50 p-4"
+              className="rounded-2xl border border-[var(--shell-border)] bg-[var(--panel-subtle)] p-4"
             >
               <div className="flex items-start justify-between gap-4">
                 <div>
                   <Link
                     href={`/outputs/${output.id}`}
-                    className="text-sm font-semibold text-slate-900 hover:text-slate-700"
+                    className="text-sm font-semibold text-[var(--shell-foreground)] hover:text-slate-700"
                   >
                     {output.title}
                   </Link>
