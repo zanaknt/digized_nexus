@@ -66,7 +66,7 @@ export default function Header() {
   }
 
   return (
-    <header className="border-b border-[var(--shell-border)] bg-[var(--shell-surface)] px-5 py-4">
+    <header className="border-b border-[var(--shell-border)] bg-[var(--shell-surface)] px-5 py-4 backdrop-blur-xl">
       <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
         <div className="min-w-0">
           <div className="text-xs font-semibold uppercase tracking-[0.22em] text-[var(--shell-muted)]">
@@ -86,12 +86,12 @@ export default function Header() {
           <button
             type="button"
             onClick={toggleTheme}
-            className="inline-flex items-center rounded-full border border-[var(--shell-border)] bg-[var(--shell-elevated)] px-3 py-2 text-xs font-medium text-[var(--shell-foreground)] transition hover:border-slate-400"
+            className="inline-flex items-center rounded-full border border-[var(--shell-border)] bg-[var(--shell-elevated)] px-3 py-2 text-xs font-medium text-[var(--shell-foreground)] transition hover:bg-[var(--panel-hover)]"
           >
             {theme === "dark" ? "Light mode" : "Dark mode"}
           </button>
 
-          <div className="flex items-center gap-3 rounded-full border border-[var(--shell-border)] bg-[var(--shell-elevated)] px-3 py-2">
+          <div className="flex items-center gap-3 rounded-full border border-[var(--shell-border)] bg-[var(--shell-elevated)] px-3 py-2 shadow-[var(--shell-shadow)]">
             <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[var(--shell-foreground)] text-xs font-semibold text-[var(--shell-surface)]">
               OP
             </div>

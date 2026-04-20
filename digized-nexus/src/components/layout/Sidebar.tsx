@@ -19,8 +19,8 @@ export default function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="w-64 min-h-screen border-r border-[var(--shell-border)] bg-[var(--shell-surface)] p-4">
-      <div className="rounded-xl border border-[var(--shell-border)] bg-[var(--shell-elevated)] px-3 py-3">
+    <aside className="w-64 min-h-screen border-r border-[var(--shell-border)] bg-[var(--shell-surface)] p-4 backdrop-blur-xl">
+      <div className="rounded-xl border border-[var(--shell-border)] bg-[var(--shell-elevated)] px-3 py-3 shadow-[var(--shell-shadow)]">
         <div className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--shell-muted)]">
           Cockpit
         </div>
@@ -42,8 +42,8 @@ export default function Sidebar() {
               href={item.href}
               className={`block rounded-lg px-3 py-2 transition ${
                 isActive
-                  ? "bg-[var(--shell-foreground)] font-medium text-[var(--shell-surface)]"
-                  : "text-[var(--shell-muted)] hover:bg-[var(--shell-elevated)] hover:text-[var(--shell-foreground)]"
+                  ? "bg-[var(--shell-foreground)] font-medium text-[var(--panel-background)]"
+                  : "text-[var(--shell-muted)] hover:bg-[var(--panel-hover)] hover:text-[var(--shell-foreground)]"
               }`}
             >
               {item.label}

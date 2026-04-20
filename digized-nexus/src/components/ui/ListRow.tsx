@@ -8,7 +8,7 @@ type ListRowProps = {
 export default function ListRow({ children, className = "" }: ListRowProps) {
   return (
     <div
-      className={`border-b border-slate-200 px-4 text-sm text-slate-700 last:border-b-0 ${className}`.trim()}
+      className={`border-b border-[var(--shell-border)] px-4 text-sm text-[var(--shell-foreground)] last:border-b-0 ${className}`.trim()}
     >
       {children}
     </div>

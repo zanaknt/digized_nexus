@@ -10,8 +10,10 @@ export default function DetailSection({
   children,
 }: DetailSectionProps) {
   return (
-    <section className="rounded-lg border border-slate-200 bg-slate-50 p-5">
-      <h2 className="text-sm font-semibold text-slate-900">{title}</h2>
+    <section className="rounded-lg border border-[var(--shell-border)] bg-[var(--panel-subtle)] p-5">
+      <h2 className="text-sm font-semibold text-[var(--shell-foreground)]">
+        {title}
+      </h2>
       {children}
     </section>
   );

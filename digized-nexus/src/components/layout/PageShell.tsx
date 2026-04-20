@@ -13,13 +13,15 @@ export default function PageShell({
 }: PageShellProps) {
   return (
     <main className="min-h-full flex-1 bg-[var(--shell-background)] p-5 lg:p-6">
-      <div className="rounded-2xl border border-[var(--shell-border)] bg-[var(--panel-background)] p-6 shadow-[0_8px_30px_rgba(15,23,42,0.06)]">
+      <div className="rounded-2xl border border-[var(--shell-border)] bg-[var(--panel-background)] p-6 shadow-[var(--shell-shadow)]">
         <div className="mb-6 space-y-2">
-          <h1 className="text-xl font-semibold tracking-tight text-slate-900">
+          <h1 className="text-xl font-semibold tracking-tight text-[var(--shell-foreground)]">
             {title}
           </h1>
           {subtitle ? (
-            <p className="text-sm leading-6 text-slate-600">{subtitle}</p>
+            <p className="text-sm leading-6 text-[var(--shell-muted)]">
+              {subtitle}
+            </p>
           ) : null}
         </div>
         {children}
